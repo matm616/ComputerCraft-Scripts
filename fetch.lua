@@ -1,7 +1,7 @@
 -- script to fetch all scrripts from my github repo
 -- written by matm616
 
-if not (fs.exists("/json")) then
+if not (fs.exists("/json.lua")) then
   shell.run("pastebin get 4nRg9CHU json.lua")
 end
 
