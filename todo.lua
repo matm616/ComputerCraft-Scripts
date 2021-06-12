@@ -1,5 +1,7 @@
 -- ToDo program
--- by zeta
+-- maintains a list of things to do and things done as files and displays them
+-- clicking a line will move it
+-- by matm616
 
 -- vars
 data = {{},{}}
