@@ -20,6 +20,7 @@ else
   obj = json.decode(content)
   for key,value in pairs( obj ) do
     if not (value.path == "readme.md") then
+      print("Getting " .. value.path .. "...")
       local repoFile = http.get(value.url).readAll()
       f = fs.open("/matm/" .. value.path, "w")
       f.write(repoFile)
@@ -27,4 +28,5 @@ else
       print()
     end
   end
+  print("Done!")
 end
