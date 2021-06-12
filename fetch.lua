@@ -5,9 +5,9 @@
 
 -- gets JSON API written by ElvishJerricco
 if not (fs.exists("/json.lua")) then
-  shell.run("pastebin get 4nRg9CHU json.lua")
+  shell.run("pastebin get 4nRg9CHU /json.lua")
 end
-os.loadAPI("json.lua")
+os.loadAPI("/json.lua")
 
 auth = false
 if (fs.exists("/githubToken")) then
