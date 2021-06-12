@@ -2,10 +2,10 @@
 -- written by matm616
 
 if not (fs.exists("/json")) then
-  shell.run("pastebin get 4nRg9CHU json")
+  shell.run("pastebin get 4nRg9CHU json.lua")
 end
 
-os.loadAPI("json")
+os.loadAPI("json.lua")
 
 github_link = "https://api.github.com/repos/matm616/ComputerCraft-Scripts/contents"
 
