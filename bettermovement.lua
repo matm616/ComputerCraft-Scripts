@@ -44,9 +44,32 @@ end
 function setHeading(direction)
 end
 
+-- untested save to file
+-- saves the current location and any waypoints into files
 function saveToFile()
-end
+    -- if /BetterMovement dir does not exists
+    if not (fs.exists("/BetterMovement")) then
+        fs.makeDir("/BetterMovement")
+    end
 
+    -- if location file already exist, delete file
+    if (fs.exists("/BetterMovement/location")) then
+        fs.delete("/BetterMovement/location")
+    end
+    -- serialise data into location file
+    local locationFile = fs.open("/BetterMovement/location", "w") -- open file
+    textutils.serialise(location) -- serialise var into file
+    locationFile.close() -- close (save) file
+
+    -- if waypoints file already exist, delete file
+    if (fs.exists("/BetterMovement/waypoints")) then
+        fs.delete("/BetterMovement/waypoints")
+    end
+    -- serialise data into waypoints file
+    local waypointsFile = fs.open("/BetterMovement/waypoints", "w") -- open file
+    textutils.serialise(waypoints) -- serialise var into file
+    waypointsFile.close() -- close (save) file
+end
 
 -- untested load from file
 -- loads what should be the current location and any left over previous waypoints
