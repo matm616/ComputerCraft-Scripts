@@ -52,20 +52,20 @@ end
 -- loads what should be the current location and any left over previous waypoints
 function loadFromFile()
     -- if /BetterMovement dir exists
-    if (fs.exists("/BetterMovement")) then
+    if (fs.exists("/BetterMovement") and fs.isDir("/BetterMovement")) then
         -- if location file exists
         if (fs.exists("/BetterMovement/location")) then
             location = {} -- empty location var
-            varFile = fs.open("/BetterMovement/location", "r") -- open file
-            location = textutils.unserialise(varFile.readAll()) -- unserialise data into var
-            varFile.close() -- close file
+            local locationFile = fs.open("/BetterMovement/location", "r") -- open file read only
+            location = textutils.unserialise(locationFile.readAll()) -- unserialise data into var
+            locationFile.close() -- close file
         end
         -- if waypoint file exists
         if (fs.exists("/BetterMovement/waypoints")) then
             waypoints = {} -- empty waypoints var
-            varFile = fs.open("/BetterMovement/waypoints", "r") -- open file
-            waypoints = textutils.unserialise(varFile.readAll()) -- unserialise data into var
-            varFile.close() -- close file
+            local waypointsFile = fs.open("/BetterMovement/waypoints", "r") -- open file read only
+            waypoints = textutils.unserialise(waypointsFile.readAll()) -- unserialise data into var
+            waypointsFile.close() -- close file
         end
     end
 end
