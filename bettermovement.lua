@@ -84,7 +84,7 @@ function u()
     left()
 end
 
-function moveTo(x, y, z)
+function moveTo(x, y, z, direction)
 	if (location["currentX"] > x) then
 		turn(3)
 		while (location["currentX"] ~= x) do
@@ -117,6 +117,10 @@ function moveTo(x, y, z)
 			forward()
 		end
 	end
+
+    -- set direction to current direction unless specified
+    direction = direction or location["currentHeading"];
+    turn(direction)
 end
 
 function setCheckpoint()
