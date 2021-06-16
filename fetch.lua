@@ -3,16 +3,16 @@
 -- To use authentication, place a file within /githubToken/ named the github user account and containing a personal access token
 
 -- gets JSON API written by ElvishJerricco
-if not (fs.exists("/utils/json.lua")) then
+if not (fs.exists("/matm/json.lua")) then
   print("Getting JSON library")
-  shell.run("pastebin get 4nRg9CHU /utils/json.lua")
+  shell.run("pastebin get 4nRg9CHU /matm/json.lua")
   -- adds functionality to the json api so you can use
   -- require() instead of the deprecated os.loadAPI()
-  local jsonFile = fs.open("/utils/json.lua", "a")
+  local jsonFile = fs.open("/matm/json.lua", "a")
   jsonFile.write("\nreturn {decode = decode}")
   jsonFile.close()
 end
-json = require("/utils/json")
+json = require("/matm/json")
 
 -- reading the first file within /githubTokens
 auth = false
