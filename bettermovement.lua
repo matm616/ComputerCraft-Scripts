@@ -15,33 +15,90 @@ waypoints = {}
 
 -- Functions
 function forward()
+    turtle.forward()
+    -- Lua doesn't have switch statements. We have this.
+    -- It should be faster than lots of if statements. Probably.
+    local switch = {
+        [0] = function()
+            location["currentX"] = location["currentX"] + 1
+        end,
+        [1] = function()
+            location["currentZ"] = location["currentZ"] + 1
+        end,
+        [2] = function()
+            location["currentX"] = location["currentX"] - 1
+        end,
+        [3] = function()
+            location["currentZ"] = location["currentZ"] - 1
+        end
+    }
+    switch(location["currentHeading"])
+end
+
+function back()
+    turtle.back()
+    local switch = {
+        [0] = function()
+            location["currentX"] = location["currentX"] - 1
+        end,
+        [1] = function()
+            location["currentZ"] = location["currentZ"] - 1
+        end,
+        [2] = function()
+            location["currentX"] = location["currentX"] + 1
+        end,
+        [3] = function()
+            location["currentZ"] = location["currentZ"] + 1
+        end
+    }
+    switch(location["currentHeading"])
 end
 
 function up()
+    turtle.up()
+    location["currentY"] = location["currentY"] + 1
 end
 
 function down()
+    turtle.down()
+    location["currentY"] = location["currentY"] - 1
 end
 
 function right()
+    turtle.turnRight()
+    location["currentHeading"] = location["currentHeading"] + 1
+    location["currentHeading"] = location["currentHeading"] % 4
 end
 
 function left()
+    turtle.turnLeft()
+    location["currentHeading"] = location["currentHeading"] - 1
+    if location["currentHeading"] == -1 then
+        location["currentHeading"] = 3
+    end
+    location["currentHeading"] = location["currentHeading"] % 4
 end
 
 function u()
+    left()
+    left()
 end
 
 function moveTo(x, y, z)
 end
 
-function checkpoint()
+function setCheckpoint()
+    table.insert(waypoints, location)
 end
 
 function lastCheckpoint()
+    return table.remove(waypoints)
 end
 
-function setHeading(direction)
+function turn(direction)
+    while(location["currentHeading"] ~= direction) do
+        right()
+    end
 end
 
 -- untested save to file
@@ -93,17 +150,23 @@ function loadFromFile()
     end
 end
 
+function update()
+    
+end
+
+-- return statement for use with require()
 return {
     location = location,
     waypoints = waypoints,
     forward = forward,
+    back = back,
     up = up,
     down = down,
     right = right,
     left = left,
     u = u,
     moveTo = moveTo,
-    checkpoint = checkpoint,
+    setCheckpoint = setCheckpoint,
     lastCheckpoint = lastCheckpoint,
-    setHeading = setHeading
+    turn = turn
 }
