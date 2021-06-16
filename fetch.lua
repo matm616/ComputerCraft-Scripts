@@ -58,5 +58,6 @@ else
 end
 print()
 print("Copying fetch.lua to root")
+fs.delete("/fetch.lua")
 fs.copy("/matm/fetch.lua", "/fetch.lua")
 print("Fetch done!")
