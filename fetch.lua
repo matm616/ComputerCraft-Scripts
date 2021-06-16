@@ -55,6 +55,8 @@ else
       f.close()
     end
   end
-  print()
-  print("Done!")
 end
+print()
+print("Copying fetch.lua to root")
+fs.copy("/matm/fetch.lua", "/fetch.lua")
+print("Fetch done!")
