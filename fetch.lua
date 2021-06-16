@@ -47,7 +47,7 @@ else
   
   obj = json.decode(content)
   for key,value in pairs( obj ) do
-    if not (value.path == "readme.md") then
+    if not (value.path == "readme.md" or value.path == ".gitignore") then
       print("Getting " .. value.path .. "...")
       local repoFile = http.get(value.download_url).readAll()
       f = fs.open("/matm/" .. value.path, "w")
