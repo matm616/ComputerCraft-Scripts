@@ -85,6 +85,38 @@ function u()
 end
 
 function moveTo(x, y, z)
+	if (location["currentX"] > x) then
+		turn(3)
+		while (location["currentX"] ~= x) do
+			forward()
+		end
+	elseif (location["currentX"] < x) then
+		turn(1)
+		while (location["currentX"] ~= x) do
+			forward()
+		end
+	end
+
+    while (location["currentY"] ~= y) do
+		sleep(0.4)
+		if (location["currentY"] > y) then
+			down()
+		elseif (location["currentY"] < y) then
+			up()
+		end
+	end
+
+    if (location["currentZ"] > z) then
+		turn(2)
+		while (location["currentZ"] ~= z) do
+			forward()
+		end
+	elseif (location["currentZ"] < z) then
+		turn(0)
+		while (location["currentZ"] ~= z) do
+			forward()
+		end
+	end
 end
 
 function setCheckpoint()
@@ -96,9 +128,14 @@ function lastCheckpoint()
 end
 
 function turn(direction)
-    while(location["currentHeading"] ~= direction) do
-        right()
-    end
+	if ((location["currentHeading"] + 1) % 4 == direction) then
+		right()
+	elseif ((location["currentHeading"] - 1) % 4 == direction) then
+		left()
+	elseif (location["currentHeading"] == direction ) then
+	else
+		u()
+	end
 end
 
 -- untested save to file
