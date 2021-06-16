@@ -92,3 +92,18 @@ function loadFromFile()
         end
     end
 end
+
+return {
+    location = location,
+    waypoints = waypoints,
+    forward = forward,
+    up = up,
+    down = down,
+    right = right,
+    left = left,
+    u = u,
+    moveTo = moveTo,
+    checkpoint = checkpoint,
+    lastCheckpoint = lastCheckpoint,
+    setHeading = setHeading
+}
